@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Subir Imagen y Consultar Usuario</title>
+</head>
+<body>
+  <h1>Subir una Imagen</h1>
+  <form action="http://localhost:3000/images/mult" method="POST" enctype="multipart/form-data">
+    <input type="file" name="frames" id="frames" multiple required>
+    <br><br>
+    <button type="submit">Enviar Imagen</button>
+  </form>
+
+  <h1>Tipo de usuario</h1>
+  <form id="formUsuario">
+    <input type="text" name="usr" placeholder="usuario" required>
+    <br><br>
+    <button type="submit">Iniciar sesi&oacute;n</button>
+  </form>
+
+  <p id="resultadoUsuario"></p>
+
+  <script>
+    document.getElementById('formUsuario').addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita recargar la página
+
+      const nombre = document.querySelector('input[name="usr"]').value;
+
+      fetch(`http://localhost:3000/getWorkstation?nombre=${encodeURIComponent(nombre)}`)
+        .then(res => res.json())
+        .then(data => {
+          const resultado = document.getElementById('resultadoUsuario');
+          if (data.employeeType) {
+            resultado.textContent = `Tipo de usuario: ${data.employeeType}`;
+          } else {
+            resultado.textContent = '⚠️ Usuario no encontrado o error en la respuesta.';
+          }
+        })
+        .catch(err => {
+          console.error('❌ Error al obtener el tipo de usuario:', err);
+          document.getElementById('resultadoUsuario').textContent = '❌ Error de conexión con el servidor.';
+        });
+    });
+  </script>
+</body>
+</html>
+
