@@ -14,6 +14,7 @@ import cors from 'cors';
 /*----Fin de los imports----*/
 
 /*----Creación de la aplicación----*/
+const port = process.env.PORT || 8080;
 
 const app = express();
 app.use(cors())
@@ -33,7 +34,7 @@ app.get('/getWorkstation', async (req, res) => {
 });
 
 //Ponemos a escuchar nuestra aplicación 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Escuchando en el puerto 3000");
 });
 

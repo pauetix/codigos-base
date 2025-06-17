@@ -1,10 +1,10 @@
 {
   "name": "prueba-credenciales",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "credenciales.js",
   "type": "module",
   "scripts": {
-    "test": "node --watch credenciales.js"
+    "start": "node credenciales.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +15,8 @@
     "express": "^5.1.0",
     "multer": "^2.0.1",
     "mysql2": "^3.14.1"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

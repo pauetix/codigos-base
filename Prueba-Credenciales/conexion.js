@@ -15,11 +15,10 @@ import {createPool} from 'mysql2/promise';
  * Y la exportamos para poder usarla en otro código
  */
 export const pool = createPool({
-    host:'34.175.170.180',  //porque es en google cloud, si fuese en local podría ser 
-    port:3306,
     database:"credential-test",
     user:'test',
     password: 'test',
+    socketPath: `/cloudsql/dev-zephyr-462508-h4:europe-west1:paint-test`, //para que se conecte 
     connectTimeout: 10000 // espera para que se establezca la conexión
 });
 
