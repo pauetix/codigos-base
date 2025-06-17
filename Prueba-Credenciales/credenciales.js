@@ -17,7 +17,6 @@ import cors from 'cors';
 const port = process.env.PORT || 8080;
 
 const app = express();
-app.use(cors())
 
 //Manejamos las peticiones HTTP de tipo GET
 app.get('/getWorkstation', async (req, res) => {

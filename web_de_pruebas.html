@@ -14,33 +14,36 @@
 
   <h1>Tipo de usuario</h1>
   <form id="formUsuario">
-    <input type="text" name="usr" placeholder="usuario" required>
+    <input type="text" name="employeeId" placeholder="usuario" required>
     <br><br>
     <button type="submit">Iniciar sesi&oacute;n</button>
   </form>
 
-  <p id="resultadoUsuario"></p>
+  <p id="Nombre_usuario"></p>
+  <p id="Tipo_usuario"></p>
 
   <script>
     document.getElementById('formUsuario').addEventListener('submit', function(e) {
       e.preventDefault(); // Evita recargar la página
 
-      const nombre = document.querySelector('input[name="usr"]').value;
+      const employeeId = document.querySelector('input[name="employeeId"]').value;
 
-      fetch(`https://employee-api-864901183996.europe-southwest1.run.app/getWorkstation?nombre=${encodeURIComponent(nombre)}`)
+      fetch(`https://employee-api-864901183996.europe-southwest1.run.app/getWorkstation?employeeId=${encodeURIComponent(employeeId)}`)
         .then(res => res.json())
         .then(data => {
           console.log("Respuesta backend:", data);
-          const resultado = document.getElementById('resultadoUsuario');
+          const usuName = document.getElementById('Nombre_usuario');
+          const usuType = document.getElementById('Tipo_usuario');
           if (data.employeeType) {
-            resultado.textContent = `Tipo de usuario: ${data.employeeType}`;
+            usuName.textContent = `Nombre: ${data.employeeName}`;
+            usuType.textContent = `Tipo de usuario: ${data.employeeType}`;
           } else {
-            resultado.textContent = '⚠️ Usuario no encontrado o error en la respuesta.';
+            usuName.textContent = '⚠️ Usuario no encontrado o error en la respuesta.';
           }
         })
         .catch(err => {
           console.error('❌ Error al obtener el tipo de usuario:', err);
-          document.getElementById('resultadoUsuario').textContent = '❌ Error de conexión con el servidor.';
+          document.getElementById('usuName').textContent = '❌ Error de conexión con el servidor.';
         });
     });
   </script>
