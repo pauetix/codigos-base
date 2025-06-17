@@ -4,6 +4,7 @@ const multer = require('multer');
 const express = require('express');
 const fs = require('node:fs');
 const path = require('path');
+const { mkdir } = require('fs/promises')
 
 
 /*----FIN DE IMPORTS----*/
@@ -12,8 +13,20 @@ const path = require('path');
 
 const numFRAME = 0;
 const app = express();
+const port = process.env.port || 3000;
+const path = ''
 
 /*----ESPACIO PARA DEFINIR LAS RUTAS PARA VíDEOS Y PARA FRAMES----*/
+
+//Definimos la función que crea la carpeta con nombre del vídeo
+async function createDirectory(path) {
+  try {
+    await mkdir(path);
+    console.log(`Created directory ${path}`);
+  } catch (error) {
+    console.error(`Got an error trying to create the directory: ${error.message}`);
+  }
+}
 
 //Aquí definimos que el destino al que van los vídeos que recibe el programa
 const storage = multer.diskStorage({
@@ -51,12 +64,15 @@ app.post('/sendVideo', videos.single('videoProc'),  (req, res) => {
     if(!req.file)
         return res.status(400).send("No se ha subido ningún archivo");
     //en el caso en el que sí qie se recine archivo se envía que se ha recibido correctamente
-    else res.send("Se ha enviado el vídeo correctamente");
+    else {
+        res.send("Se ha enviado el vídeo correctamente");
+        
+    }
 });
 
 /*----FIN DE CÓDIGO DE APLIACIÓN----*/
 
 //ponemos a escuchar la aplicación en el puerto 3000
-app.listen(3000, () => {
-    console.log("Escuchando en el puerto 3000");
+app.listen(port, () => {
+    console.log("Escuchando en el puerto " + String(port));
 })

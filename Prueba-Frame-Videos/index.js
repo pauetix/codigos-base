@@ -12,7 +12,7 @@ const multer = require('multer')
                 //código
 
     //puerto con el que vamos a trajar
-const port = 3000;
+const port = process.env.port || 3000;
 
     //llamamos a multer para crear un middleware y especificamos ruta donde dejaremos los archivos con los que vamos a trabajar
 const upload = multer({dest: 'uploads/'});

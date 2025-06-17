@@ -1,7 +1,7 @@
 {
   "name": "prueba-frame-videos",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "procesado.js",
   "scripts": {
     "start": "node --watch procesado.js"
   },
