@@ -16,7 +16,7 @@ def process_video():
     if 'video' not in request.files:
         return 'No video uploaded', 400
     file = request.files['video']
-    file.save('uploads/' + file.filename)  # O procesas directamente
+    #file.save('uploads/' + file.filename)  # O procesas directamente
     # Aquí podrías usar OpenCV, etc.
     return 'Video recibido en Python', 200
 

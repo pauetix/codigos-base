@@ -4,7 +4,6 @@ const multer = require('multer');
 const express = require('express');
 const fs = require('node:fs');
 const path = require('path');
-const { mkdir } = require('fs/promises')
 
 
 /*----FIN DE IMPORTS----*/
@@ -13,20 +12,11 @@ const { mkdir } = require('fs/promises')
 
 const numFRAME = 0;
 const app = express();
-const port = process.env.port || 3000;
-const path = ''
+const port = 3000;
+
 
 /*----ESPACIO PARA DEFINIR LAS RUTAS PARA VíDEOS Y PARA FRAMES----*/
 
-//Definimos la función que crea la carpeta con nombre del vídeo
-async function createDirectory(path) {
-  try {
-    await mkdir(path);
-    console.log(`Created directory ${path}`);
-  } catch (error) {
-    console.error(`Got an error trying to create the directory: ${error.message}`);
-  }
-}
 
 //Aquí definimos que el destino al que van los vídeos que recibe el programa
 const storage = multer.diskStorage({
