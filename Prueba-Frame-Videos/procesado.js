@@ -10,7 +10,6 @@ const path = require('path');
 
 /*----CÓDIGO DE APLIACIÓN----*/
 
-const numFRAME = 0;
 const app = express();
 const port = 3000;
 
